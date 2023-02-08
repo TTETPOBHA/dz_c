@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+ 
+int main() 
+{
+    setlocale(LC_ALL, "Russian");
+    
+    int k1 = 2;
+    int k2 = 5;
+    const int SIZE = 8;
+    const int NEW_SIZE = SIZE - (k2 - k1 + 1); // размер нового массива
+    int arr[SIZE] = {5,42,7,3,6,1,33,77}; // исходный массив
+    int *newarr = new int[NEW_SIZE]; // создание нового динамического массива
+ 
+    int i = 0; // итератор вынесен за пределы области видимости цикла т.к. размеры массивов различаются
+    for (; i < k1; i++)
+    {
+        newarr[i] = arr[i];
+    }
+    for (int j = k2 + 1 ; j < SIZE ;i++, j++)
+    {
+        newarr[i] = arr[j];
+    }
+ 
+    cout << "Исходный массив:" << endl;
+    for (auto const element : arr)
+    {
+        cout << element << " ";
+    }
+    cout << "\nМассив с удаленными элементами с индексами от " << k1 << " до " << k2 << endl;
+    for (i = 0; i < NEW_SIZE; i++) 
+    {
+        cout << newarr[i] << " ";
+    }
+ 
+    delete[] newarr; // очистка памяти
+    return 0;
